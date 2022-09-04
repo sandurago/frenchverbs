@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr>
-          <h2>Verb: Rendre</h2>
+          <h2>Verb: {{ chosenVerb }}</h2>
         </tr>
       </thead>
       <tbody>
@@ -28,42 +28,56 @@ export default {
   }),
 
   computed: {
-    getVerbsInfinitives () {
-      return Object.keys(this.verbsObject);
-    },
-
     /**
-     * 
-     * @returns {Array}
+     * Maps verbs to start with upper case.
+     * @returns {Array} List of verbs from JSON file.
      */
-    displayPronouns () {
-      this.pronouns = Object.keys(this.verbsObject[this.getRandomVerb()]);
-      console.log(this.pronouns);
-    }
+    getVerbsInfinitives () {
+      const getVerbs = Object.keys(this.verbsObject);
+      return getVerbs.map((verb) => {
+        return verb[0].toUpperCase() + verb.substring(1);
+      })
+    },
   },
 
   methods: {
+    /**
+     * Gets the verbs.json file.
+     * Converts the file to JSON format.
+     * Assigns it to data variable.
+     *  @type {Object}
+     */
     async getData () {
       const fetchFile = await fetch('/verbs.json');
       const getJson = await fetchFile.json();
       this.verbsObject = getJson;
-      console.log(this.verbsObject);
     },
 
     /**
-     * Gets the length of all the keys of the object with verbs.
-     * @returns {String} between 0 and max length.
+     * Gets the total number of verbs (from the array).
+     * @returns {String} Ranomly chosen verb.
      */
     getRandomVerb () {
       const objectsLength = this.getVerbsInfinitives.length;
-      const verbs = Object.keys(this.verbsObject);
-      return verbs[Math.floor(Math.random() * objectsLength)];
+      return this.getVerbsInfinitives[Math.floor(Math.random() * objectsLength)];
     },
+
+    /**
+    * Gets the keys (pronouns) of randomly chosen verb.
+    * @type {String}
+    */
+    displayPronouns () {
+      const pronouns = Object.keys(this.verbsObject[this.chosenVerb.toLowerCase()]);
+      this.pronouns = pronouns.map((pronoun) => {
+        return pronoun[0].toUpperCase() + pronoun.substring(1);
+      })
+    }
   },
 
   async created () {
     await this.getData();
-    this.displayPronouns;
+    this.chosenVerb = this.getRandomVerb();
+    this.displayPronouns();
   }
 }
 </script>
