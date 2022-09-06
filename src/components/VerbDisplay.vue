@@ -30,20 +30,19 @@
         </tr>
       </tbody>
     </table>
-    <template v-if="!allowNext">
-      <button
-        @click="checkIfEqual"
-        class="w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default"
-        :disabled="conjugationFromInput.length < 6"
-        type="button"
-      >Check</button>
-    </template>
-    <template v-else>
-      <button
-        @click="getNext"
-        class="w-28 bg-sky-200"
-      >Next verb</button>
-    </template>
+    <button
+      v-if="!allowNext"
+      @click="checkIfEqual"
+      class="w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default"
+      :disabled="conjugationFromInput.length < 6"
+      type="button"
+    >Check</button>
+
+    <button
+      v-else
+      @click="getNext"
+      class="w-28 bg-sky-200"
+    >Next verb</button>
   </div>
 </template>
 
