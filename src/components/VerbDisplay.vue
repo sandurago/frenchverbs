@@ -3,81 +3,67 @@
     <table>
       <thead>
         <tr>
-          <h2>Verb: {{ chosenVerb }}</h2>
+          <h2>Verb: {{ verbsStore.chosenVerb }}</h2>
         </tr>
       </thead>
       <tbody>
-        <VerbTable :pronouns="pronouns" />
+        <tr
+          v-for="(pronoun, index) in verbsStore.displayPronouns"
+          :key="index"
+        >
+          <td>{{ pronoun }}</td>
+          <td><input
+              v-model="verbConjugInput[index]"
+              type="text"
+              class="border-b border-b-solid border-slate-700 outline-none"
+            ></td>
+          <template v-if="arrayOfBooleans.length">
+            <td
+              v-if="arrayOfBooleans[index]"
+              class="text-emerald-400"
+            >Correct</td>
+            <td
+              v-else
+              class="text-rose-400"
+            >Not correct</td>
+          </template>
+        </tr>
       </tbody>
     </table>
+    <button
+      @click="checkIfEqual"
+      class="w-28 bg-sky-200"
+      type="button"
+    >Check</button>
   </div>
 </template>
 
 <script>
-import VerbTable from '@/components/VerbTable.vue'
+import { useVerbsStore } from '@/store/verbs';
+import { mapStores } from 'pinia';
 
 export default {
-  components: {
-    VerbTable,
-  },
 
   data: () => ({
-    chosenVerb: "",
-    pronouns: [],
-    verbsObject: {},
+    verbConjugInput: [],
+    isEqual: null,
+    arrayOfBooleans: [],
   }),
 
   computed: {
-    /**
-     * Maps verbs to start with upper case.
-     * @returns {Array} List of verbs from JSON file.
-     */
-    getVerbsInfinitives () {
-      const getVerbs = Object.keys(this.verbsObject);
-      return getVerbs.map((verb) => {
-        return verb[0].toUpperCase() + verb.substring(1);
-      })
-    },
+    ...mapStores(useVerbsStore),
   },
 
   methods: {
-    /**
-     * Gets the verbs.json file.
-     * Converts the file to JSON format.
-     * Assigns it to data variable.
-     *  @type {Object}
-     */
-    async getData () {
-      const fetchFile = await fetch('/verbs.json');
-      const getJson = await fetchFile.json();
-      this.verbsObject = getJson;
-    },
+    checkIfEqual () {
+      const verb = this.verbsStore.chosenVerb.toLowerCase();
+      const verbConjugationFromData = Object.values(this.verbsStore.verbsObject[verb]);
 
-    /**
-     * Gets the total number of verbs (from the array).
-     * @returns {String} Ranomly chosen verb.
-     */
-    getRandomVerb () {
-      const objectsLength = this.getVerbsInfinitives.length;
-      return this.getVerbsInfinitives[Math.floor(Math.random() * objectsLength)];
-    },
-
-    /**
-    * Gets the keys (pronouns) of randomly chosen verb.
-    * @type {String}
-    */
-    displayPronouns () {
-      const pronouns = Object.keys(this.verbsObject[this.chosenVerb.toLowerCase()]);
-      this.pronouns = pronouns.map((pronoun) => {
-        return pronoun[0].toUpperCase() + pronoun.substring(1);
+      const booleans = verbConjugationFromData.map((element) => {
+        return this.verbConjugInput.includes(element);
       })
+      this.arrayOfBooleans = booleans;
     }
   },
-
-  async created () {
-    await this.getData();
-    this.chosenVerb = this.getRandomVerb();
-    this.displayPronouns();
-  }
 }
 </script>
