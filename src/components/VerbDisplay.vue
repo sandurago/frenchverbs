@@ -13,7 +13,7 @@
         >
           <td>{{ pronoun }}</td>
           <td><input
-              v-model="verbConjugInput[index]"
+              v-model="conjugationFromInput[index]"
               type="text"
               class="border-b border-b-solid border-slate-700 outline-none"
             ></td>
@@ -30,11 +30,20 @@
         </tr>
       </tbody>
     </table>
-    <button
-      @click="checkIfEqual"
-      class="w-28 bg-sky-200"
-      type="button"
-    >Check</button>
+    <template v-if="!allowNext">
+      <button
+        @click="checkIfEqual"
+        class="w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default"
+        :disabled="conjugationFromInput.length < 6"
+        type="button"
+      >Check</button>
+    </template>
+    <template v-else>
+      <button
+        @click="getNext"
+        class="w-28 bg-sky-200"
+      >Next verb</button>
+    </template>
   </div>
 </template>
 
@@ -45,9 +54,9 @@ import { mapStores } from 'pinia';
 export default {
 
   data: () => ({
-    verbConjugInput: [],
-    isEqual: null,
+    conjugationFromInput: [],
     arrayOfBooleans: [],
+    allowNext: false,
   }),
 
   computed: {
@@ -55,14 +64,34 @@ export default {
   },
 
   methods: {
+    /**
+     * Gets the chosen verb and sets it to lower case.
+     * Gets the conjugation of the chosen verb.
+     * Checks whether each conjugation from input matches the conjugation from data (creates "true-false" array).
+     * Allows "Next verb" button only if every value in the array is true.
+     * @type {Array}
+     */
     checkIfEqual () {
       const verb = this.verbsStore.chosenVerb.toLowerCase();
-      const verbConjugationFromData = Object.values(this.verbsStore.verbsObject[verb]);
+      const conjugationFromData = Object.values(this.verbsStore.verbsObject[verb]);
 
-      const booleans = verbConjugationFromData.map((element) => {
-        return this.verbConjugInput.includes(element);
+      this.arrayOfBooleans = conjugationFromData.map((element) => {
+        return this.conjugationFromInput.includes(element);
       })
-      this.arrayOfBooleans = booleans;
+      if (this.arrayOfBooleans.every((value) => (value === true))) {
+        this.allowNext = true;
+      }
+    },
+
+    /**
+     * Fires methods that choose and set new random verb.
+     * Resets previously stored data.
+     */
+    getNext () {
+      this.verbsStore.setChosenVerb(this.verbsStore.getRandomVerb());
+      this.conjugationFromInput = [];
+      this.arrayOfBooleans = [];
+      this.allowNext = false;
     }
   },
 }
