@@ -29,9 +29,8 @@ export default {
     },
   },
 
-  async created () {
-    await this.getData();
-    this.verbsStore.setChosenVerb(this.verbsStore.getRandomVerb());
+  created () {
+    this.getData();
   }
 }
 </script>

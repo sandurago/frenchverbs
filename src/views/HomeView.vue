@@ -1,13 +1,13 @@
 <template>
-  <VerbDisplay />
+  <VerbsList />
 </template>
 
 <script>
-import VerbDisplay from '@/components/VerbDisplay.vue';
+import VerbsList from '@/views/VerbsList.vue';
 
 export default {
   components: {
-    VerbDisplay,
+    VerbsList,
   }
 }
 
