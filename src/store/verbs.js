@@ -13,7 +13,7 @@ export const useVerbsStore = defineStore('verbs', {
     getVerbsInfinitives (state) {
       const getVerbs = Object.keys(state.verbsObject);
       return getVerbs.map((verb) => {
-        return verb[0].toUpperCase() + verb.substring(1);
+        return verb;
       })
     },
 
@@ -25,7 +25,7 @@ export const useVerbsStore = defineStore('verbs', {
       if (!state.chosenVerb) {
         return [];
       }
-      const pronouns = Object.keys(state.verbsObject[state.chosenVerb.toLowerCase()]);
+      const pronouns = Object.keys(state.verbsObject[state.chosenVerb.toLowerCase()].conjugation);
       return pronouns.map((pronoun) => {
         return pronoun[0].toUpperCase() + pronoun.substring(1);
       })

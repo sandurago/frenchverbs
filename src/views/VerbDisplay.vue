@@ -3,7 +3,9 @@
     <table>
       <thead>
         <tr>
-          <h2>Verb: {{ verbsStore.chosenVerb }}</h2>
+          <h2 class="font-bold text-juicy-orange">Verb: <span class="capitalize">{{
+              verbsStore.chosenVerb
+          }}</span></h2>
         </tr>
       </thead>
       <tbody>
@@ -62,6 +64,15 @@ export default {
     ...mapStores(useVerbsStore),
   },
 
+  watch: {
+    "$route.params.name": {
+      handler (newParam, _oldParam) {
+        this.verbsStore.setChosenVerb(newParam);
+      },
+      deep: true,
+    }
+  },
+
   methods: {
     /**
      * Gets the chosen verb and sets it to lower case.
@@ -71,8 +82,8 @@ export default {
      * @type {Array}
      */
     checkIfEqual () {
-      const verb = this.verbsStore.chosenVerb.toLowerCase();
-      const conjugationFromData = Object.values(this.verbsStore.verbsObject[verb]);
+      const verb = this.verbsStore.chosenVerb;
+      const conjugationFromData = Object.values(this.verbsStore.verbsObject[verb].conjugation);
 
       this.arrayOfBooleans = conjugationFromData.map((element) => {
         return this.conjugationFromInput.includes(element);
@@ -87,11 +98,25 @@ export default {
      * Resets previously stored data.
      */
     getNext () {
-      this.verbsStore.setChosenVerb(this.verbsStore.getRandomVerb());
+      const newVerb = this.verbsStore.getRandomVerb();
+      this.verbsStore.setChosenVerb(newVerb);
       this.conjugationFromInput = [];
       this.arrayOfBooleans = [];
       this.allowNext = false;
+
+      this.$router.push({
+        name: 'verb-display',
+        params: {
+          name: newVerb,
+        }
+      });
     }
   },
+
+  created () {
+    if (this.$route.params.name) {
+      this.verbsStore.setChosenVerb(this.$route.params.name);
+    }
+  }
 }
 </script>
