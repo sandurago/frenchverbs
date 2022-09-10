@@ -50,7 +50,7 @@ export default {
         this.$router.push({
           name: 'verb-display',
           params: {
-            name: this.chosenRandomVerb,
+            verb: this.chosenRandomVerb,
           }
         })
       }, 500);

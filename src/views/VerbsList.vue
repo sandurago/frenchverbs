@@ -17,11 +17,6 @@
       class="px-3 bg-forest-green border-2 border-solid rounded-md text-white"
     >Get random verb</button>
     <InitializeVerb v-if="isRandom" />
-
-
-
-
-
     <label
       for="select"
       class="font-bold text-deep-purple"
@@ -72,7 +67,7 @@
           </tr>
           <tr class="pt-2 flex justify-center">
             <router-link
-              :to="{ name: 'verb-display', params: { name: infinitive } }"
+              :to="{ name: 'verb-display', params: { verb: infinitive } }"
               class="px-2 bg-light-orange text-white text-bold rounded-md hover:bg-juicy-orange"
             >Practice!</router-link>
           </tr>
@@ -132,7 +127,7 @@ export default {
       this.$router.push({
         name: 'verb-display',
         params: {
-          name: param,
+          verb: param,
         }
       });
     },
@@ -141,7 +136,7 @@ export default {
       this.$router.push({
         name: "verb-display",
         params: {
-          name: infinitive,
+          verb: infinitive,
         }
       });
     },
