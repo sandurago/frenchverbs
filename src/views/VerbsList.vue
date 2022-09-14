@@ -17,15 +17,11 @@
       class="px-3 bg-forest-green border-2 border-solid rounded-md text-white"
     >Get random verb</button>
     <InitializeVerb v-if="isRandom" />
-
-
-
-
-
+    <span class="px-4 text-dark-gray">or</span>
     <label
       for="select"
-      class="font-bold text-deep-purple"
-    >See all verbs:</label>
+      class="pl-4 pr-2 font-bold text-deep-purple"
+    >Choose verb:</label>
     <select
       name="select"
       id="select"
@@ -42,9 +38,14 @@
     <button
       @click="onClick"
       class="px-3 bg-forest-green border-2 border-solid rounded-md text-white"
-    >Select</button>
+      :disabled="!selectedVerb"
+    >Practice it!</button>
     <div class="flex flex-col">
       <span class="pt-4 text-light-orange font-bold text-lg">List of verbs:</span>
+      <span
+        v-if="displayNotFound"
+        class="font-bold text-grafite"
+      >No verb found.</span>
       <table
         v-for="(verbObject, infinitive, j) in displaySearchedVerb"
         :key="j"
@@ -72,7 +73,7 @@
           </tr>
           <tr class="pt-2 flex justify-center">
             <router-link
-              :to="{ name: 'verb-display', params: { name: infinitive } }"
+              :to="{ name: 'verb-display', params: { verb: infinitive } }"
               class="px-2 bg-light-orange text-white text-bold rounded-md hover:bg-juicy-orange"
             >Practice!</router-link>
           </tr>
@@ -109,13 +110,6 @@ export default {
 
       const matchingVerbs = {};
 
-      // console.log(
-      //   infinitives.filter(infinitive => {
-      //     const inf = infinitive.toLowerCase();
-      //     return inf.indexOf(this.query.toLowerCase()) !== -1;
-      //   })
-      // );
-
       infinitives.forEach(infinitive => {
         const inf = infinitive.toLowerCase();
         if (inf.indexOf(this.query.toLowerCase()) !== -1) {
@@ -123,6 +117,15 @@ export default {
         }
       });
       return matchingVerbs;
+    },
+
+    displayNotFound () {
+      /** @type {Array} */
+      const infinitives = this.verbsStore.getVerbsInfinitives;
+
+      return infinitives.every(infinitive => {
+        return infinitive !== this.query && infinitive.indexOf(this.query) === -1 && this.query.length !== 0;
+      })
     }
   },
 
@@ -132,7 +135,7 @@ export default {
       this.$router.push({
         name: 'verb-display',
         params: {
-          name: param,
+          verb: param,
         }
       });
     },
@@ -141,7 +144,7 @@ export default {
       this.$router.push({
         name: "verb-display",
         params: {
-          name: infinitive,
+          verb: infinitive,
         }
       });
     },
