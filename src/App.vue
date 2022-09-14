@@ -1,30 +1,36 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="">About</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { useVerbsStore } from '@/store/verbs';
+import { mapStores } from 'pinia';
 
-nav {
-  padding: 30px;
-}
+export default {
+  computed: {
+    ...mapStores(useVerbsStore),
+  },
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  methods: {
+    /**
+   * Gets the verbs.json file.
+   * Converts the file to JSON format.
+   * Assigns it to data variable.
+   *  @type {Object}
+   */
+    async getData () {
+      const fetchFile = await fetch('/verbs.json');
+      const getJson = await fetchFile.json();
+      this.verbsStore.setVerbs(getJson);
+    },
+  },
 
-nav a.router-link-exact-active {
-  color: #42b983;
+  created () {
+    this.getData();
+  }
 }
-</style>
+</script>
