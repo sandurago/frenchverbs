@@ -29,6 +29,10 @@ export const useVerbsStore = defineStore('verbs', {
       return pronouns.map((pronoun) => {
         return pronoun[0].toUpperCase() + pronoun.substring(1);
       })
+    },
+
+    getVerbObject (state) {
+      return state.verbsObject[state.chosenVerb];
     }
   },
 

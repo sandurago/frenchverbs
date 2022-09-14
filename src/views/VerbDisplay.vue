@@ -1,64 +1,89 @@
 <template>
-  <div>
+  <div class="w-80">
     <table>
       <thead>
         <tr>
-          <h2 class="font-bold text-juicy-orange">Verb: <span class="capitalize">{{
-              verbsStore.chosenVerb
-          }}</span></h2>
+          <th>
+            <h2 class="px-4 font-bold text-juicy-orange bg-light-gray">Verb: <span
+                class="capitalize text-deep-purple px-3"
+              >{{
+                  verbsStore.chosenVerb
+              }}</span></h2>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(pronoun, index) in verbsStore.displayPronouns"
-          :key="index"
-        >
-          <td>{{ pronoun }}</td>
-          <td><input
+        <tr class="m-4">
+          <td
+            v-for="(pronoun, index) in verbsStore.displayPronouns"
+            :key="index"
+            class="flex my-2"
+          >
+            <span class="w-16 text-juicy-orange">{{ pronoun }}</span>
+            <input
               v-model="conjugationFromInput[index]"
               type="text"
-              class="border-b border-b-solid border-slate-700 outline-none"
-            ></td>
-          <template v-if="arrayOfBooleans.length">
-            <td
-              v-if="arrayOfBooleans[index]"
-              class="text-emerald-400"
-            >Correct</td>
-            <td
-              v-else
-              class="text-rose-400"
-            >Not correct</td>
-          </template>
+              class="border-b border-b-solid border-deep-purple outline-none text-grafite"
+            >
+            <template v-if="arrayOfBooleans.length">
+              <span
+                v-if="arrayOfBooleans[index]"
+                class="text-emerald-400 mx-4"
+              >
+                Correct
+              </span>
+
+              <span
+                v-else
+                class="text-rose-400 mx-4"
+              >Not correct</span>
+            </template>
+          </td>
         </tr>
       </tbody>
     </table>
-    <template v-if="!allowNext">
+    <div class="flex justify-between">
       <button
+        v-if="!allowNext"
         @click="checkIfEqual"
-        class="w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default"
+        class="my-3 w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default rounded-md"
         :disabled="conjugationFromInput.length < 6"
         type="button"
       >Check</button>
-    </template>
-    <template v-else>
+
       <button
+        v-else
         @click="getNext"
-        class="w-28 bg-sky-200"
+        class="my-3 w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default rounded-md"
       >Next verb</button>
-    </template>
+
+      <button
+        @click="help"
+        class="my-3 w-28 bg-turqoise rounded-md"
+      >Stuck?</button>
+      <ConjugationPopup
+        v-if="getHelp"
+        @close="closeHelp"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { useVerbsStore } from '@/store/verbs';
 import { mapStores } from 'pinia';
+import ConjugationPopup from '@/components/ConjugationPopup.vue';
 
 export default {
+  components: {
+    ConjugationPopup,
+  },
 
   data: () => ({
     conjugationFromInput: [],
     arrayOfBooleans: [],
     allowNext: false,
+    getHelp: false,
   }),
 
   computed: {
@@ -66,7 +91,7 @@ export default {
   },
 
   watch: {
-    "$route.params.name": {
+    "$route.params.verb": {
       handler (newParam, _oldParam) {
         this.verbsStore.setChosenVerb(newParam);
       },
@@ -108,15 +133,23 @@ export default {
       this.$router.push({
         name: 'verb-display',
         params: {
-          name: newVerb,
+          verb: newVerb,
         }
       });
+    },
+
+    help () {
+      this.getHelp = true;
+    },
+
+    closeHelp () {
+      this.getHelp = false;
     }
   },
 
   created () {
-    if (this.$route.params.name) {
-      this.verbsStore.setChosenVerb(this.$route.params.name);
+    if (this.$route.params.verb) {
+      this.verbsStore.setChosenVerb(this.$route.params.verb);
     }
   }
 }

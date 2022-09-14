@@ -7,7 +7,7 @@ const routes = [
     component: () => import('../views/HomeView.vue'),
   },
   {
-    path: '/verb/:name',
+    path: '/verb/:verb',
     name: 'verb-display',
     component: () => import('../views/VerbDisplay.vue')
   }
