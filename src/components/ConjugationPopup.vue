@@ -1,10 +1,10 @@
 <template>
   <div class="fixed w-full h-full top-0 left-0 flex justify-center items-center bg-deep-purple bg-opacity-50">
-    <div class="w-80 h-96 bg-light-orange bg-opacity-70 rounded-lg flex flex-col justify-center items-center">
+    <div class="w-80 h-96 p-5 bg-light-orange bg-opacity-70 rounded-lg flex flex-col justify-center items-center">
       <button
         @click="close"
         type="button"
-        class="ml-auto mr-6 pt-0.5 w-6 h-6 border-2 border-solid border-deep-purple rounded-full flex justify-center items-center"
+        class="ml-auto mr-2 pt-0.5 w-6 h-6 border-2 border-solid border-deep-purple rounded-full flex justify-center items-center"
       >&#10006</button>
       <p class="text-lg font-bold uppercase text-deep-purple">Verb: {{ verbsStore.chosenVerb }}</p>
       <p class="py-2 text-deep-purple font-bold">Translation: <span class="text-grafite">{{
@@ -17,7 +17,7 @@
         class="py-1 text-grafite"
       >
         {{ pronoun }} <span class="font-bold">{{ conjugation }}</span></p>
-      <p class="font-bold text-deep-purple">Example: <span class="font-normal italic text-grafite">{{
+      <p class="font-bold text-deep-purple text-center">Example: <span class="font-normal italic text-grafite">{{
           verbsStore.getVerbObject.example
       }}</span></p>
     </div>
