@@ -130,14 +130,29 @@ export default {
 
       // This gives us something like:
       // [
-      //   ["être", {...}]
-      //   ["avoir", {...}]
+      //   ["être", {...}]  : left
+      //   ["avoir", {...}] : right
       // ]
       const entries = Object.entries(verbs);
       if (this.sorting === 'asc') {
         const sorted = entries.sort((left, right) => {
           // left[0] because of the shape of entries:
           // 0 is the index of the key
+          /*
+            For example, here is left:
+            ["etre", {
+              "conjugation": ...,
+              "translation": ...,
+              "example": ...,
+            }]
+
+            so we see that it's an array.
+            At index 0, we have the name of the verb,
+            which we are going to sort.
+
+            And it's the same thing for right. Left and right are just names
+            for the arrays.
+          */
           const infLeft = left[0];
           const infRight = right[0];
 
