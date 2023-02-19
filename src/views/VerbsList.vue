@@ -27,6 +27,7 @@
       id="select"
       v-model="selectedVerb"
       class="ml-2 mr-4 w-20 border-2 border-solid border-gray rounded-md outline-none focus:border-dark-turqoise"
+      :class="addShake"
     >
       <option
         v-for="(verb, index) in verbsStore.getVerbsInfinitives"
@@ -38,7 +39,6 @@
     <button
       @click="onClick"
       class="px-3 bg-forest-green border-2 border-solid rounded-md text-white"
-      :disabled="!selectedVerb"
     >Practice it!</button>
     <div class="flex flex-col">
       <span class="pt-4 text-light-orange font-bold text-lg">List of verbs:</span>
@@ -88,6 +88,7 @@ import { useVerbsStore } from '@/store/verbs';
 import { RouterLink } from 'vue-router';
 import { mapStores } from 'pinia';
 import InitializeVerb from '@/components/InitializeVerb.vue';
+import 'animate.css';
 
 export default {
   components: {
@@ -96,6 +97,7 @@ export default {
   },
 
   data: () => ({
+    shake: false,
     selectedVerb: null,
     query: "",
     isRandom: false,
@@ -126,11 +128,25 @@ export default {
       return infinitives.every(infinitive => {
         return infinitive !== this.query && infinitive.indexOf(this.query) === -1 && this.query.length !== 0;
       })
+    },
+
+    addShake () {
+      return {
+        "animate__animated animate__headShake": this.shake,
+      };
     }
   },
 
   methods: {
     onClick () {
+      if (this.selectedVerb === null) {
+        this.shake = true;
+        setTimeout(() => {
+          this.shake = false;
+        }, 500);
+        return;
+      };
+
       const param = this.selectedVerb;
       this.$router.push({
         name: 'verb-display',
