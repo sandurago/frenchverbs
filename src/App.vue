@@ -1,18 +1,18 @@
 <template>
-  <nav class="my-2">
-    <router-link
-      to="/"
-      class="font-bold text-grafite"
-    >List of verbs</router-link>
-  </nav>
-  <router-view />
+  <NavBar />
+  <router-view class="py-2 px-4"/>
 </template>
 
 <script>
 import { useVerbsStore } from '@/store/verbs';
 import { mapStores } from 'pinia';
+import NavBar from '../src/views/NavBar.vue';
 
 export default {
+  components: {
+    NavBar,
+  },
+
   computed: {
     ...mapStores(useVerbsStore),
   },
