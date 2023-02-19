@@ -42,12 +42,17 @@
     >Practice it!</button>
     <div class="flex flex-col">
       <span class="pt-4 text-light-orange font-bold text-lg">List of verbs:</span>
+      <select v-model="sorting">
+        <option value="">No sorting</option>
+        <option value="asc">Alphabetical order</option>
+        <option value="desc">Alphabetical reverse</option>
+      </select>
       <span
         v-if="displayNotFound"
         class="font-bold text-grafite"
       >No verb found.</span>
       <table
-        v-for="(verbObject, infinitive, j) in displaySearchedVerb"
+        v-for="(verbObject, infinitive, j) in displaySortedVerbs"
         :key="j"
         class="w-1/3 mt-4"
       >
@@ -98,6 +103,7 @@ export default {
   data: () => ({
     selectedVerb: null,
     query: "",
+    sorting: "",
     isRandom: false,
   }),
 
@@ -117,6 +123,53 @@ export default {
         }
       });
       return matchingVerbs;
+    },
+
+    displaySortedVerbs() {
+      const verbs = this.displaySearchedVerb;
+
+      // This gives us something like:
+      // [
+      //   ["être", {...}]
+      //   ["avoir", {...}]
+      // ]
+      const entries = Object.entries(verbs);
+      if (this.sorting === 'asc') {
+        const sorted = entries.sort((left, right) => {
+          // left[0] because of the shape of entries:
+          // 0 is the index of the key
+          const infLeft = left[0];
+          const infRight = right[0];
+
+          // If infinitive on the left "is bigger", it comes after
+          if (infLeft > infRight) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        // Object.fromEntries allows us to "reverse" the Object.entries operation:
+        // It transforms the [["être", {...}], ["avoir", {...}]] back into
+        // {"être": {...}, "avoir": {...}}
+        return Object.fromEntries(sorted);
+      } else if (this.sorting === 'desc') {
+        // We do the same as previously, except this time we reverse the value in sort
+        const sorted = entries.sort((left, right) => {
+          const infLeft = left[0];
+          const infRight = right[0];
+
+          if (infLeft > infRight) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+
+        return Object.fromEntries(sorted);
+      }
+
+      // We reach here if we didn’t specify a sorting option
+      return verbs;
     },
 
     displayNotFound () {
