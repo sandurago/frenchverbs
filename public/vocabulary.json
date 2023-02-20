@@ -1,0 +1,302 @@
+[
+  {
+    "category": "Famille",
+    "translation": "Family",
+    "words": [
+      {
+        "french": "un mari, un époux",
+        "polish": "mąż"
+      },
+      {
+        "french": "une femme, une épouse",
+        "polish": "żona"
+      },
+      {
+        "french": "un père, un papa",
+        "polish": "ojciec, tata"
+      },
+      {
+        "french": "une mère, une maman",
+        "polish": "matka, mama"
+      },
+      {
+        "french": "un fils",
+        "polish": "syn",
+        "pronunciation": "fis"
+      },
+      {
+        "french": "une fille",
+        "polish": "córka"
+      },
+      {
+        "french": "un frère (jumeau)",
+        "polish": "brat (bliźniak)"
+      },
+      {
+        "french": "une sœur (jumelle)",
+        "polish": "siostra (bliźniaczka)"
+      },
+      {
+        "french": "un grand-père",
+        "polish": "dziadek"
+      },
+      {
+        "french": "une grand-mère",
+        "polish": "babcia"
+      },
+      {
+        "french": "un arrière-grand-père",
+        "polish": "pradziadek"
+      },
+      {
+        "french": "un petit-fils",
+        "polish": "wnuk"
+      },
+      {
+        "french": "une tante",
+        "polish": "ciocia"
+      },
+      {
+        "french": "un oncle",
+        "polish": "wujek"
+      },
+      {
+        "french": "un neveu",
+        "polish": "bratanek, siostrzeniec"
+      },
+      {
+        "french": "une nièce",
+        "polish": "bratanica, siostrzenica"
+      },
+      {
+        "french": "un(e) cousin(e)",
+        "polish": "kuzyn(ka)"
+      },
+      {
+        "french": "une belle-mère",
+        "polish": "teściowa, macocha"
+      },
+      {
+        "french": "une belle-fille",
+        "polish": "synowa, pasierbica"
+      },
+      {
+        "french": "un gendre",
+        "polish": "zięć"
+      },
+      {
+        "french": "une belle-sœur",
+        "polish": "szwagierka, bratowa"
+      },
+      {
+        "french": "un parrain",
+        "polish": "ojciec chrzestny"
+      },
+      {
+        "french": "une marraine",
+        "polish": "matka chrzestna"
+      },
+      {
+        "french": "un(e) filleul(e)",
+        "polish": "chrześniak(-nica)",
+        "pronunciation": "fijœl"
+      }
+    ]
+  },
+  {
+    "category": "Apparence physique",
+    "translation": "Physical appearance",
+    "words": [
+      {
+        "french": "joli(e)",
+        "polish": "ładny(-a)"
+      },
+      {
+        "french": "séduisant(e)",
+        "polish": "atrakcyjny(-a), pociągający(-a)"
+      },
+      {
+        "french": "beau/belle",
+        "polish": "piękny(-a), przystojny"
+      },
+      {
+        "french": "laid(e)",
+        "polish": "brzydki(-a)"
+      },
+      {
+        "french": "grand(e)",
+        "polish": "wysoki(-a)"
+      },
+      {
+        "french": "petit(e)",
+        "polish": "niski(-a)"
+      },
+      {
+        "french": "de taille moyenne",
+        "polish": "średniego wzrostu"
+      },
+      {
+        "french": "mince",
+        "polish": "szczupły(-a)"
+      },
+      {
+        "french": "maigre",
+        "polish": "chudy(-a)"
+      },
+      {
+        "french": "rond(e)",
+        "polish": "pulchny(-a)"
+      },
+      {
+        "french": "gros/grosse",
+        "polish": "gruby(-a)"
+      },
+      {
+        "french": "obèse",
+        "polish": "otyły(-a)"
+      },
+      {
+        "french": "bien bâti(e)",
+        "polish": "dobrze zbudowany(-a)"
+      },
+      {
+        "french": "svelte",
+        "polish": "smukly(-a)"
+      },
+      {
+        "french": "sportif(-ve)",
+        "polish": "wysportowany(-a)"
+      },
+      {
+        "french": "musclé(e)",
+        "polish": "umięśniony(-a)"
+      },
+      {
+        "french": "la barbe",
+        "polish": "broda"
+      },
+      {
+        "french": "la moustache",
+        "polish": "wąsy"
+      },
+      {
+        "french": "les cheveux",
+        "polish": "włosy"
+      },
+      {
+        "french": "raides",
+        "polish": "proste"
+      },
+      {
+        "french": "ondulés",
+        "polish": "falowane"
+      },
+      {
+        "french": "frisés",
+        "polish": "kręcone"
+      },
+      {
+        "french": "blonds",
+        "polish": "blond"
+      },
+      {
+        "french": "bruns",
+        "polish": "ciemne, brązowe"
+      },
+      {
+        "french": "roux",
+        "polish": "rude"
+      },
+      {
+        "french": "gris",
+        "polish": "szpakowate"
+      },
+      {
+        "french": "blancs",
+        "polish": "siwe, białe"
+      },
+      {
+        "french": "longs",
+        "polish": "dlugie"
+      },
+      {
+        "french": "mi-longs",
+        "polish": "średniej długości"
+      },
+      {
+        "french": "courts",
+        "polish": "krótkie"
+      },
+      {
+        "french": "chauve",
+        "polish": "łysy(-a)"
+      },
+      {
+        "french": "une tache de naissance",
+        "polish": "znamię"
+      },
+      {
+        "french": "des taches (f.) de rousseur",
+        "polish": "piegi"
+      },
+      {
+        "french": "un grain de beauté",
+        "polish": "pieprzyk"
+      }
+    ]
+  },
+  {
+    "category": "Traits de caractère",
+    "translation": "Character traits",
+    "words": [
+      {
+
+      }
+    ]
+  },
+  {
+    "category": "Émotions",
+    "translation": "Emotions",
+    "words": [
+      {
+
+      }
+    ]
+  },
+  {
+    "category": "Météo",
+    "translation": "Weather",
+    "words": [
+      {
+
+      }
+    ]
+  },
+  {
+    "category": "Verbes (1)",
+    "translation": "Verbs (1)",
+    "words": [
+      {
+
+      }
+    ]
+  },
+  {
+    "category": "Parler des livres, films, chansons",
+    "translation": "Talking about books, movies, songs",
+    "words": [
+      {
+
+      }
+    ]
+  },
+  {
+    "category": "Éducation",
+    "translation": "Education",
+    "words": [
+      {
+
+      }
+    ]
+  }
+]
