@@ -250,7 +250,126 @@
     "translation": "Character traits",
     "words": [
       {
-
+        "french": "autoritaire",
+        "polish": "władczy(-a), apodyktyczny(-a)"
+      },
+      {
+        "french": "avare",
+        "polish": "skąpy(-a)"
+      },
+      {
+        "french": "(mal)honnête",
+        "polish": "(nie)uczciwy(-a)"
+      },
+      {
+        "french": "(im)mature",
+        "polish": "(nie)dojrzały(-a)",
+        "pronunciation": "imatyr"
+      },
+      {
+        "french": "modeste",
+        "polish": "skromny(-a)"
+      },
+      {
+        "french": "raisonnable",
+        "polish": "rozsądny(-a)"
+      },
+      {
+        "french": "(ir)responsable",
+        "polish": "(nie)odpowiedzialny(-a)"
+      },
+      {
+        "french": "sensible",
+        "polish": "wrażliwy(-a)"
+      },
+      {
+        "french": "serviable",
+        "polish": "uczynny(-a)"
+      },
+      {
+        "french": "(in)sociable",
+        "polish": "(nie)towarzyski(-a)"
+      },
+      {
+        "french": "timide",
+        "polish": "nieśmiały(-a)"
+      },
+      {
+        "french": "amusant(e)",
+        "polish": "zabawny(-a)"
+      },
+      {
+        "french": "bavard(e)",
+        "polish": "rozmowny(-a), gadatliwy(-a)"
+      },
+      {
+        "french": "distrait(e)",
+        "polish": "roztargniony(-a)"
+      },
+      {
+        "french": "méchant(e)",
+        "polish": "złośliwy(-a)"
+      },
+      {
+        "french": "(im)patient(e)",
+        "polish": "(nie)cierpliwy(-a)"
+      },
+      {
+        "french": "souriant(e)",
+        "polish": "uśmiechnięty(-a), radosny(-a)"
+      },
+      {
+        "french": "têtu(e)",
+        "polish": "uparty(-a)"
+      },
+      {
+        "french": "(in)tolérant(e)",
+        "polish": "(nie)tolerancyjny(-a)"
+      },
+      {
+        "french": "ambitieux(-euse)",
+        "polish": "ambitny(-a)"
+      },
+      {
+        "french": "chaleureux(-euse)",
+        "polish": "ciepły(-a), serdeczny(-a)"
+      },
+      {
+        "french": "généreux(-euse)",
+        "polish": "hojny(-a)"
+      },
+      {
+        "french": "nerveux(-euse)",
+        "polish": "nerwony(-a)"
+      },
+      {
+        "french": "paresseux(-euse)",
+        "polish": "leniwy(-a)"
+      },
+      {
+        "french": "prétentieux(-euse)",
+        "polish": "zarozumiały(-a)"
+      },
+      {
+        "french": "travailleur(-euse)",
+        "polish": "pracowity(-a)"
+      },
+      {
+        "french": "jaloux(-ouse)",
+        "polish": "zazdrosny(-a)"
+      },
+      {
+        "french": "(in)discret(-ète)",
+        "polish": "(nie)dyskretny(-a)"
+      },
+      {
+        "french": "franc/franche",
+        "polish": "szczery(-a)"
+      },
+      {
+        "french": "gentil",
+        "polish": "miły(-a)",
+        "pronunciation": "ʒãti(j)"
       }
     ]
   },
