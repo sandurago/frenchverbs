@@ -1,41 +1,48 @@
 <template>
-  <div class="w-80">
-    <table>
+  <div class="w-lg mx-auto my-16 bg-dark-blue bg-opacity-50 rounded-md">
+    <table class="w-full">
       <thead>
         <tr>
           <th>
-            <h2 class="px-4 font-bold text-juicy-orange bg-light-gray">Verb: <span
+            <h2 class="font-bold text-juicy-orange bg-light-gray">Verb: <span
                 class="capitalize text-deep-purple px-3"
               >{{
                   verbsStore.chosenVerb
               }}</span></h2>
           </th>
+          <th>
+            <h2 class="font-bold bg-light-gray">
+              Your answers:
+            </h2>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="m-4">
+        <tr
+          v-for="(pronoun, index) in verbsStore.displayPronouns"
+          :key="index"
+          class="m-4"
+        >
           <td
-            v-for="(pronoun, index) in verbsStore.displayPronouns"
-            :key="index"
             class="flex my-2"
           >
-            <span class="w-16 text-juicy-orange">{{ pronoun }}</span>
+            <span class="w-16 text-deep-purple">{{ pronoun }}</span>
             <input
               v-model="conjugationFromInput[index]"
               type="text"
-              class="border-b border-b-solid border-deep-purple outline-none text-grafite"
+              class="px-2 border-solid border-deep-purple rounded-sm outline-none text-grafite"
             >
+          </td>
+          <td>
             <template v-if="arrayOfBooleans.length">
-              <span
-                v-if="arrayOfBooleans[index]"
-                class="text-emerald-400 mx-4"
+              <span v-if="arrayOfBooleans[index]"
+                class="mx-4 text-emerald-600 font-bold"
               >
                 Correct
               </span>
-
               <span
-                v-else
-                class="text-rose-400 mx-4"
+              v-else
+                class="mx-4 text-rose-600 font-bold"
               >Not correct</span>
             </template>
           </td>
@@ -43,6 +50,15 @@
       </tbody>
     </table>
     <div class="flex justify-between">
+      <button
+        @click="help"
+        class="my-3 w-28 bg-light-orange rounded-md"
+      >Stuck?</button>
+      <ConjugationPopup
+        v-if="getHelp"
+        @close="closeHelp"
+      />
+
       <button
         v-if="!allowNext"
         @click="checkIfEqual"
@@ -56,15 +72,6 @@
         @click="getNext"
         class="my-3 w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default rounded-md"
       >Next verb</button>
-
-      <button
-        @click="help"
-        class="my-3 w-28 bg-turqoise rounded-md"
-      >Stuck?</button>
-      <ConjugationPopup
-        v-if="getHelp"
-        @close="closeHelp"
-      />
     </div>
   </div>
 </template>

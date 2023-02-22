@@ -42,11 +42,16 @@
     >Practice it!</button>
     <div class="flex flex-col">
       <span class="pt-4 text-light-orange font-bold text-lg">List of verbs:</span>
-      <select v-model="sorting">
-        <option value="">No sorting</option>
-        <option value="asc">Alphabetical order</option>
-        <option value="desc">Alphabetical reverse</option>
-      </select>
+      <div class="flex items-center">
+        <span class="pr-2 text-deep-purple font-bold">Sort: </span>
+        <div class="my-2 w-fit border-2 border-solid border-forest-green rounded-md">
+          <select v-model="sorting" class="outline-none">
+            <option value="">No sorting</option>
+            <option value="asc">Alphabetical order</option>
+            <option value="desc">Alphabetical reverse</option>
+          </select>
+        </div>
+      </div>
       <span
         v-if="displayNotFound"
         class="font-bold text-grafite"
