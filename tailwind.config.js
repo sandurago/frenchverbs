@@ -20,7 +20,8 @@ module.exports = {
         "grafite": "#2d3436",
       },
       spacing: {
-        "lg": "420px",
+        "lg": "700px",
+        "md": "160px",
       }
     },
   },
