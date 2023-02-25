@@ -71,6 +71,11 @@
         v-if="getHelp"
         @close="closeHelp"
       />
+
+      <button
+        @click="getNext()"
+        class="m-4 h-14 w-28 bg-grass-green rounded-md"
+      >Another verb</button>
     </div>
   </div>
 </template>
