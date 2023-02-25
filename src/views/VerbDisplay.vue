@@ -53,7 +53,7 @@
         v-if="!allowNext"
         @click="checkIfEqual"
         class="m-4 h-14 w-28 bg-sky-200 cursor-pointer disabled:bg-slate-300 disabled:text-white disabled:bg-opacity-50 disabled:cursor-default rounded-md"
-        :disabled="conjugationFromInput.length < 6"
+        :disabled="!allowCheckButton"
         type="button"
       >Check</button>
 
@@ -86,7 +86,7 @@ export default {
   },
 
   data: () => ({
-    conjugationFromInput: [],
+    conjugationFromInput: Array(6).fill(''),
     arrayOfBooleans: [],
     allowNext: false,
     getHelp: false,
@@ -94,6 +94,10 @@ export default {
 
   computed: {
     ...mapStores(useVerbsStore),
+
+    allowCheckButton() {
+      return this.conjugationFromInput.length == 6 && this.conjugationFromInput.every((value) => ((value !== '')));
+    }
   },
 
   watch: {
