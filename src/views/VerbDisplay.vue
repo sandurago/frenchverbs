@@ -1,6 +1,6 @@
 <template>
-  <div class="w-lg mx-auto my-16 flex flex-row bg-opacity-50 rounded-md">
-    <table class="w-full">
+  <div class="justify-center my-16 flex flex-row bg-opacity-50 rounded-md">
+    <table class="w-lg">
       <thead class="h-10 align-top">
         <tr>
           <th class="pr-4">
@@ -48,7 +48,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="ml-4">
+    <div class="ml-4 flex flex-col">
       <button
         v-if="!allowNext"
         @click="checkIfEqual"
